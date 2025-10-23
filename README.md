@@ -139,17 +139,17 @@ Some AI tools are **Unity Official** (like Unity Muse), while others come from *
 
 https://learn.unity.com/course/prototype-a-scene-with-unity-ai/tutorial/set-up-your-project-with-unity-ai#688a29feedbc2a084aceb988
 
-###The course is structured as a series of short tutorials, each focused on a specific Unity AI capability, in the following order:###
+This tutorial as a series of short tutorials, each focused on a specific Unity AI capability, in the following order:
 
-Unity AI Assistant: A built-in tool that helps you build, modify, and script your project using text-based commands. You’ll use it to set up your scene, generate lighting, and write scripts directly in the Editor.
-Animation Generator: Creates humanoid animations from a prompt. You’ll generate animations like idle or dance motions and apply them to your character.
-Texture Generator: Produces 2D textures to use as backgrounds or surface effects. You’ll apply these textures to create a custom backdrop for your scene.
-Material Generator: Builds physically-based materials for 3D surfaces. You’ll create and apply materials to give your ground a polished, tileable surface.
-Sprite Generator: Outputs 2D images ideal for UI icons or decals. You’ll generate a character avatar sprite and use it in your UI.
-Sound Generator: Generates ambient sounds and effects. You’ll add background music and randomized sound effects to bring your scene to life.
-Along the way, you’ll learn best practices for writing effective prompts and integrating the generated assets directly into your project.
+* Unity AI Assistant: A built-in tool that helps you build, modify, and script your project using text-based commands. You’ll use it to set up your scene, generate lighting, and write scripts directly in the Editor.
 
-By the end of this course, you'll have a working game prototype and the confidence to use Unity AI to streamline your future development efforts.
+* Animation Generator: Creates humanoid animations from a prompt. You’ll generate animations like idle or dance motions and apply them to your character.
+* Texture Generator: Produces 2D textures to use as backgrounds or surface effects. You’ll apply these textures to create a custom backdrop for your scene.
+* Material Generator: Builds physically-based materials for 3D surfaces. You’ll create and apply materials to give your ground a polished, tileable surface.
+* Sprite Generator: Outputs 2D images ideal for UI icons or decals. You’ll generate a character avatar sprite and use it in your UI.
+* Sound Generator: Generates ambient sounds and effects. You’ll add background music and randomized sound effects to bring your scene to life.
+
+At the end of this tutorial, you’ll learn best practices for writing effective prompts and integrating the generated assets directly into your project. have a working game prototype and the confidence to use Unity AI to streamline your future development efforts.
 
 
 ---
