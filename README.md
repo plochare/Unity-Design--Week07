@@ -2,10 +2,195 @@
 
 ## Agenda
 
-1. [Unity Animator & Mixamo](#Unity-Animator)
-2. [Unity Editor AI Tools](#Unity-AI-Tools)
-3. [Vuforia AR SDK](#Vuforia-SDK)
+1. [Tweening with DOTween](#DO-Tween)  
+2. [Unity Animator & Mixamo](#Unity-Animator)
+3. [Unity Editor AI Tools](#Unity-AI-Tools)
 
+# 🎬 Unity DOTween
+
+Tweening (short for *in-betweening*) lets you smoothly animate values over time, such as movement, rotation, scale, UI transitions, or color changes.
+
+**[DOTween](http://dotween.demigiant.com/)** is a fast, efficient, full-featured tweening engine for Unity. It’s widely used in professional projects because of its flexibility and performance.
+
+---
+
+## 🚀 What is DOTween?
+
+DOTween provides:
+
+* ✨ **Powerful animations** for any value, not just transforms.
+* 🔗 **Sequences** – chain multiple tweens in order.
+* 🎛️ **Ease of use** – simple one-liners to animate properties.
+* ⚡ **High performance** – optimized for mobile and consoles.
+* 🛠️ **Extensibility** – works with custom variables, UI, shaders, and more.
+
+---
+
+## 📦 Installation
+
+### Option 1: Unity Asset Store
+
+1. Open **Unity Asset Store** inside the Unity Editor.
+2. Search for **DOTween** and install the free version (or Pro for extra features).
+
+### Option 2: Package from Website
+
+1. Download DOTween from [dotween.demigiant.com](http://dotween.demigiant.com/).
+2. Import the `.unitypackage` into your Unity project.
+3. Run **DOTween Utility Panel** via `Tools > Demigiant > DOTween Utility Panel` to set up.
+
+---
+
+## 💡 Basic Usage
+
+Here’s how to move a GameObject smoothly across the screen:
+
+```csharp
+using UnityEngine;
+using DG.Tweening; // DOTween namespace
+
+public class DoTweenExample : MonoBehaviour
+{
+    void Start()
+    {
+        // Move the object to position (5, 2, 0) over 2 seconds
+        transform.DOMove(new Vector3(5f, 2f, 0f), 2f);
+    }
+}
+```
+
+---
+
+## 🛠️ DOTween API Overview
+
+### 1. Move Object
+
+```csharp
+transform.DOMove(Vector3 targetPosition, float duration);
+```
+
+Moves a GameObject to the target position.
+
+---
+
+### 2. Rotate Object
+
+```csharp
+transform.DORotate(new Vector3(0, 180, 0), 2f);
+```
+
+Rotates a GameObject smoothly.
+
+---
+
+### 3. Scale Object
+
+```csharp
+transform.DOScale(Vector3.one * 2f, 1f);
+```
+
+Doubles the size of the object in 1 second.
+
+---
+
+### 4. Color Tween
+
+```csharp
+spriteRenderer.DOColor(Color.red, 1.5f);
+```
+
+Tweens a sprite’s color over 1.5 seconds.
+
+---
+
+### 5. UI Tweening
+
+```csharp
+myText.DOFade(0f, 2f);  // fade out text
+myImage.DOFillAmount(1f, 3f); // fill radial image
+```
+
+---
+
+### 6. Sequences
+
+Chain multiple animations together:
+
+```csharp
+Sequence mySequence = DOTween.Sequence();
+mySequence.Append(transform.DOMoveX(3, 1f))
+          .Append(transform.DOScale(Vector3.one * 2, 0.5f))
+          .Append(transform.DORotate(new Vector3(0, 180, 0), 1f))
+          .OnComplete(() => Debug.Log("Sequence Finished!"));
+```
+
+---
+
+### 7. Looping
+
+```csharp
+transform.DOMoveY(3f, 1f).SetLoops(-1, LoopType.Yoyo);
+```
+
+Makes the object bounce up and down forever.
+
+---
+
+### 8. Callbacks
+
+```csharp
+transform.DOMoveX(5, 2f).OnComplete(() => Debug.Log("Done!"));
+```
+
+---
+
+## 🎮 Tutorial: Bouncy UI Button
+
+Let’s animate a UI button to “bounce” when clicked:
+
+```csharp
+using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
+
+public class DoTweenButton : MonoBehaviour
+{
+    public Button myButton;
+
+    void Start()
+    {
+        myButton.onClick.AddListener(() =>
+        {
+            myButton.transform.DOScale(Vector3.one * 1.2f, 0.2f)
+                .SetEase(Ease.OutBack)
+                .OnComplete(() =>
+                {
+                    myButton.transform.DOScale(Vector3.one, 0.2f).SetEase(Ease.InBack);
+                });
+        });
+    }
+}
+```
+
+✅ Result: The button pops when clicked with a smooth easing curve.
+
+---
+
+## 📸 Example Scenarios
+
+* Smooth **camera transitions**
+* UI elements sliding in/out
+* Looping **background animations**
+* Complex cutscene animations using **Sequences**
+* Sprite flashing or color transitions
+
+---
+
+## 📚 Resources
+
+* [DOTween Official Documentation](http://dotween.demigiant.com/documentation.php)
+* [DOTween Pro](http://dotween.demigiant.com/pro.php) – extended features for UI and visual tools
+  
 ---
 
 # 🎬 Unity Animation System & Mixamo Integration
@@ -151,7 +336,6 @@ This tutorial as a series of short tutorials, each focused on a specific Unity A
 
 At the end of this tutorial, you’ll learn best practices for writing effective prompts and integrating the generated assets directly into your project. have a working game prototype and the confidence to use Unity AI to streamline your future development efforts.
 
-
 ---
 
 ## ✅ Best Practices
@@ -160,132 +344,5 @@ At the end of this tutorial, you’ll learn best practices for writing effective
 * Keep **version control** active (AI changes can be large).
 * Use AI for **rapid iteration**, but refine manually for performance/quality.
 * Test generated code for **performance + security**.
-
----
-
-# Unity Vuforia SDK 🔍✨
-
-Vuforia is a leading **Augmented Reality (AR) SDK** for Unity that allows developers to recognize images, objects, and environments, then overlay interactive 3D content. It’s widely used for AR apps in education, retail, training, and entertainment.
-
----
-
-## 🎯 What is Vuforia?
-Vuforia is an **AR engine** that integrates with Unity to provide:
-- 📷 **Image Target Recognition** → Detect and augment 2D images.  
-- 🛠 **Model Target Tracking** → Recognize 3D objects.  
-- 🌍 **Ground Plane** → Place AR objects on real-world surfaces.  
-- 🎭 **VUMarks** → Custom markers (like QR codes but stylized).  
-- 🕹 **Virtual Buttons** → Trigger actions with physical marker interactions.  
-- 🧩 **Multi-targets** → Track multiple objects at once.  
-
----
-
-## 🛠 Requirements
-- Unity **2021 LTS or newer**.  
-- [Vuforia Engine SDK](https://developer.vuforia.com/downloads/sdk) installed in Unity.  
-- A supported device (Android/iOS) with a working camera.  
-- [Vuforia Developer Account](https://developer.vuforia.com/) (for license keys).  
-
----
-
-## 📥 Installation
-
-1. **Enable Vuforia in Unity**  
-   - Go to: `Edit → Project Settings → Player → XR Settings`.  
-   - Enable **Vuforia Augmented Reality Support**.  
-
-2. **Get a License Key**  
-   - Sign up at [Vuforia Developer Portal](https://developer.vuforia.com/).  
-   - Create a new project → Copy your **App License Key**.  
-   - Paste it into: `Vuforia Configuration → App License Key`.  
-
-3. **Import Vuforia SDK**  
-   - Via Unity **Package Manager** or `.unitypackage` download from the Vuforia portal.  
-
----
-
-## 🚀 Quick Start Tutorial
-
-### 1. Setup AR Camera
-- Delete the default Unity **Main Camera**.  
-- Add a **Vuforia AR Camera** (GameObject → Vuforia Engine → AR Camera).  
-- In **AR Camera Inspector**, paste your License Key.  
-
-### 2. Add an Image Target
-1. Go to [Vuforia Target Manager](https://developer.vuforia.com/target-manager).  
-2. Upload a reference image → Generate a **Database**.  
-3. Download the `.unitypackage` and import into Unity.  
-4. In Unity:  
-   - Add **GameObject → Vuforia Engine → Image Target**.  
-   - Assign your imported database + image.  
-
-### 3. Place 3D Content
-- Drag a 3D model (e.g., Cube, Character prefab) as a **child of the Image Target**.  
-- When the target is detected via camera, the object appears on top of it.  
-
-### 4. Build & Test
-- Switch platform: **Android/iOS**.  
-- Build & run on a device.  
-- Point your camera at the image target → Watch your AR content appear.  
-
----
-
-## 🧩 Example Script: Rotate Object on Target
-```csharp
-using UnityEngine;
-using Vuforia;
-
-public class RotateOnTarget : MonoBehaviour, ITrackableEventHandler
-{
-    private TrackableBehaviour trackable;
-
-    void Start()
-    {
-        trackable = GetComponent<TrackableBehaviour>();
-        if (trackable) trackable.RegisterTrackableEventHandler(this);
-    }
-
-    public void OnTrackableStateChanged(
-        TrackableBehaviour.Status prev, TrackableBehaviour.Status newStatus)
-    {
-        if (newStatus == TrackableBehaviour.Status.DETECTED ||
-            newStatus == TrackableBehaviour.Status.TRACKED)
-        {
-            // Target found → Start rotating
-            StartCoroutine(Rotate());
-        }
-    }
-
-    private System.Collections.IEnumerator Rotate()
-    {
-        while (true)
-        {
-            transform.Rotate(Vector3.up * 50 * Time.deltaTime);
-            yield return null;
-        }
-    }
-}
-````
-
-✅ This script rotates a 3D object whenever the target image is detected.
-
----
-
-## ⚡ Advanced Features
-
-* **Ground Plane** → Place objects on horizontal surfaces without markers.
-* **Model Targets** → Recognize and augment real 3D products.
-* **VUMarks** → Brandable AR markers (customized QR-like codes).
-* **Virtual Buttons** → Add interactivity by defining button zones on targets.
-
----
-
-## 💡 Best Practices
-
-* Use **high-contrast, non-repetitive images** for targets.
-* Test target ratings in the Vuforia Target Manager (⭐ stronger = better).
-* Optimize 3D assets (low poly, compressed textures) for mobile performance.
-* Handle lost tracking gracefully (fade or pause AR content).
-* Always test on real devices — AR is hardware dependent.
 
 ---
